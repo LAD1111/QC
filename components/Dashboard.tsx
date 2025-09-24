@@ -280,10 +280,10 @@ const Dashboard = () => {
           <div className="lg:col-span-5 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
             <MainChart data={filteredData} isComparing={isComparing} />
           </div>
-          <div className="lg:col-span-2 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
+          <div className="lg:col-span-5 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
             <ProductPieChart data={filteredData} isComparing={isComparing} />
           </div>
-           <div className="lg:col-span-3 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
+           <div className="lg:col-span-5 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
             <ProductSummaryTable primaryData={productSummaryData} comparisonData={productSummaryComparisonData} isComparing={isComparing} />
           </div>
           <div className="lg:col-span-5 bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">

@@ -26,16 +26,19 @@ const CustomTooltip = ({ active, payload }: any) => {
 
 const ProductPieChart: React.FC<ProductPieChartProps> = ({ data, isComparing }) => {
   const productAdCostData = useMemo(() => {
-    // FIX: By explicitly typing the accumulator `acc`, we ensure `productMap` gets the correct type,
-    // which resolves downstream type inference issues where variables were inferred as 'unknown'.
-    const productMap = data.reduce((acc: Map<string, number>, item) => {
-      const currentCost = acc.get(item.product) || 0;
-      acc.set(item.product, currentCost + item.adCost);
-      return acc;
-    }, new Map<string, number>());
+    // FIX: Replaced .reduce() with for...of loops to avoid a subtle type inference issue
+    // where TypeScript was incorrectly inferring 'unknown' for aggregated values.
+    // This more explicit approach ensures type correctness.
+    const productMap: Map<string, number> = new Map();
+    for (const item of data) {
+      const currentCost = productMap.get(item.product) || 0;
+      productMap.set(item.product, currentCost + item.adCost);
+    }
     
-    // FIX: Add explicit types for the reduce accumulator and value to prevent TypeScript from inferring them as 'unknown'.
-    const totalAdCost = Array.from(productMap.values()).reduce((sum: number, cost: number) => sum + cost, 0);
+    let totalAdCost = 0;
+    for (const cost of productMap.values()) {
+        totalAdCost += cost;
+    }
 
     return Array.from(productMap.entries()).map(([name, value]) => ({
       name,
