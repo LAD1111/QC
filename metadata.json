@@ -1,0 +1,5 @@
+{
+  "name": "Advertising Cost Dashboard",
+  "description": "A dashboard to visualize advertising cost, revenue, and profit data fetched from a public Google Sheet. It features KPIs, charts, and a data table.",
+  "requestFramePermissions": []
+}
